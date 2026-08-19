@@ -1,26 +1,26 @@
-
 GET http://localhost:3000/
+
 ###
-GET http://localhost:3000/filmes
-###
-POST http://localhost:3000/create-movie
+POST http://localhost:3000/create
 Content-Type: application/json
 
 {
-    "tiltle": "guerra nas estrelas0",
-    "genero": "ficacao cientifica",
-    "duracao": 120,
-    "classificacao_idade": 12
+    "title": "Homem-Aranha: Sem Volta Pra Casa",
+    "gender": "Ação / Aventura",
+    "ageLimit": 14,
+    "duration": 145
 }
+
 ###
-DELETE http://localhost:3000/delete-movie/1
+DELETE http://localhost:3000/delete/13
+
 ###
-PUT http://localhost:3000/update-movie/2
+PUT http://localhost:3000/update/2
 Content-Type: application/json
 
 {
-    "tiltle": "guerra das estrelas52",
-    "genero": "acao",
-    "duracao": 2,
-    "classificacao_idade": 16
+    "title": "O Senhor dos Anéis: As Duas Torres",
+    "gender": "Comédia",
+    "ageLimit": 18,
+    "duration": 189
 }

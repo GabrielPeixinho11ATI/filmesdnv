@@ -1,96 +1,81 @@
 import express from "express"
 import mysql2 from "mysql2"
+import cors from "cors"
 
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 app.get("/", (request, response) => {
-    response.json({
-        message: "CRUD de filmes"
-    })
-})
+    const selectCommand = "SELECT * filmes_GabrielPeixinhoNicolas"
 
-app.get("/filmes", (request, response) => {
-    const selectCommand = "SELECT * FROM filmes_GabrielPeixinhoNicolas"
-
-    sql.query(selectCommand, (error, tiltle) => {
-        if(error) {
+    sql.query(selectCommand, (error, data) => {
+        if (error) {
             console.log(error)
             return
         }
 
-        response.json(tiltle)
+        response.json(data)
     })
 })
 
-app.post("/create-movie", (request, response) => {
-    const {tiltle, genero, duracao, classificacao_idade} = request.body
+app.post("/create", (request, response) => {
+    const { title, gender, ageLimit, duration } = request.body
 
-    const insertCommand = "INSERT INTO filmes_GabrielPeixinhoNicolas (tiltle, genero, duracao, classificacao_idade) VALUES (?, ?, ?, ?)"
+    const insertCommand = "INSERT INTO filmes_GabrielPeixinhoNicolas(title, gender, ageLimit, duration) VALUES (?, ?, ?, ?)"
 
-    sql.query(insertCommand, [tiltle, genero, duracao, classificacao_idade], (error) => {
+    sql.query(insertCommand, [title, gender, ageLimit, duration], (error) => {
         if(error) {
             console.log(error)
             return
         }
 
         response.status(201).json({
-            message: "Filme cadastrado!"
+            message: "Filme cadastrado com sucesso!"
         })
     })
 })
 
-app.delete("/delete-movie/:id", (request,response)=> {
-    const {id} = request.params
+app.delete("/delete/:id", (request, response) => {
+    const { id } = request.params
 
-    const deleteCommand = "DELETE FROM filmes_GabrielPeixinhoNicolas WHERE id = ?"
+    const deleteCommand = "DELETE FROM filmes_GabrielPeixinhoNicolas WHERE id=?"
 
     sql.query(deleteCommand, [id], (error) => {
-        if(error) {
+        if (error) {
             console.log(error)
             return
         }
 
         response.json({
-            message: "Filme deletado!"
+            message: "Filme apagado com sucesso!"
         })
     })
 })
 
-app.put("/update-movie/:id", (request, response) => {
+app.put("/update/:id", (request, response) => {
     const { id } = request.params
-    const { tiltle, genero, duracao, classificacao_idade } = request.body
+    const { title, gender, ageLimit, duration } = request.body
 
-    let updateCommand
-    let valores
-    
-    if(tiltle && genero && duracao && classificacao_idade) {
-    updateCommand = "UPDATE filmes_GabrielPeixinhoNicolas SET tiltle = ?, genero = ?, duracao = ?, classificacao_idade = ? WHERE id = ?"
-    valores = [tiltle, genero, duracao, classificacao_idade, id]
+    let updateCommand = "UPDATE filmes_GabrielPeixinhoNicolas SET title = ?, gender = ?, ageLimit = ?, duration = ? WHERE id = ?"
 
-     } else if(tiltle && genero && duracao) {
-        updateCommand = "UPDATE filmes_GabrielPeixinhoNicolas SET tiltle = ?, genero = ?, duracao = ? WHERE id = ?"
-        valores = [tiltle, genero, duracao, id]
-        } else {
-        return response.status(400).json({ error: "Envie pelo seus titulo, genero, duracao e faixa etaria" })
-    }
-
-    sql.query(updateCommand, valores, (error) => {
-        if(error) {
+    sql.query(updateCommand, [title, gender, ageLimit, duration, id], (error) => {
+        if (error) {
             console.log(error)
-            return response.status(500).json({ error: "Erro ao atualizar este filme" })
+            return
         }
 
         response.json({
-            message: "Filme atualizado!"
+            message: "Filme alterado com sucesso!"
         })
     })
 })
 
+
 app.listen(3000, () => {
-    console.log("CRUD de filmes funcionando")
-})  
+    console.log("Servidor online")
+})
 
 const sql = mysql2.createPool({
     host: "benserverplex.ddns.net",
