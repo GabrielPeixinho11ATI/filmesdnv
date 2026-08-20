@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(cors())
 
 app.get("/", (request, response) => {
-    const selectCommand = "SELECT * filmes_GabrielPeixinhoNicolas"
+    const selectCommand = "SELECT * FROM filmes_GabrielPeixinhoNicolas"
 
     sql.query(selectCommand, (error, data) => {
         if (error) {
