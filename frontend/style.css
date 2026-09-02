@@ -1,21 +1,27 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background: black;
+    padding: 20px;
+    color: white;
+    margin-bottom: 10px;
+
+    a {
+        color: white;
     }
-    
-    h1 {
-    text-align: center;
-    }
-    
-    .filmes {
+}
+.filmes {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    }
-    
-    div {
+}
+
+div {
     border: 1px solid black;
     width: 300px;
     height: 200px;
     padding: 10px;
-    }
+}
