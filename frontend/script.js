@@ -18,3 +18,12 @@ async function buscarFilmes() {
 }
 
 buscarFilmes()
+
+async function apagarFilme(id) {
+    const respostaDeSucessoAoApagar = await fetch(`https://filmesbackend-eight.vercel.app/delete/${id}`, { method: "DELETE" })
+    const mensagem = await respostaDeSucessoAoApagar.json()
+
+    alert(mensagem.message)
+
+    window.location.reload()
+}
