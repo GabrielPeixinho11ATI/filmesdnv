@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../form.css">
+    <title>Editar filme | Acervo</title>
+</head>
+<body>
+    <header class="form-header">
+        <a class="back-link" href="../index.html">← Voltar ao acervo</a>
+        <p class="eyebrow">Atualizar registro</p>
+        <h1>Editar filme</h1>
+    </header>
+
+    <main>
+        <form id="film-form">
+            <div class="field">
+                <label for="title">Título do filme:</label>
+                <input required type="text" id="title">
+            </div>
+            <div class="field">
+                <label for="gender">Gênero:</label>
+                <input required type="text" id="gender">
+            </div>
+            <div class="field">
+                <label for="ageLimit">Classificação indicativa:</label>
+                <input required type="number" min="0" id="ageLimit">
+            </div>
+            <div class="field">
+                <label for="duration">Duração:</label>
+                <input required type="number" min="1" id="duration">
+            </div>
+            <button class="button" type="submit">Salvar alterações</button>
+            <p class="form-message" role="status"></p>
+        </form>
+    </main>
+    <script src="editar.js"></script>
+</body>
+</html>

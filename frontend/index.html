@@ -1,20 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes_peixeenicolas</title>
+    <meta name="description" content="Catálogo pessoal de filmes">
+    <title>Acervo | Filmes</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <h1>Filmes</h1>
-
-        <a href="./cadastrar/cadastrar.html">Cadastrar novo filme</a>
-
-        
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="./index.html">ACERVO<span>/</span>FILMES</a>
+            <a class="button button-primary" href="./cadastrar/cadastrar.html">Adicionar filme</a>
+        </div>
     </header>
 
-    <section class="filmes"></section>
+    <main class="page-shell">
+        <section class="intro">
+            <p class="eyebrow">Catálogo pessoal</p>
+            <h1>Histórias para rever.</h1>
+            <p class="intro-copy">Organize seus filmes favoritos em um só lugar.</p>
+        </section>
+
+        <section class="catalog-section" aria-labelledby="catalog-title">
+            <div class="section-heading">
+                <h2 id="catalog-title">Todos os filmes</h2>
+                <span class="film-count" aria-live="polite"></span>
+            </div>
+            <div class="filmes" aria-live="polite"></div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
